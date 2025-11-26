@@ -39,6 +39,9 @@ def draw_koch_segment(a: Point, b: Point, depth: int):
 
 
 def draw_koch_snowflake(center: Point, size: float, depth: int):
+    """
+    Draws the Koch snowflake: three Koch curves forming an equilateral triangle.
+    """
     cx, cy = center
     h = size * math.sqrt(3) / 2
 
@@ -52,11 +55,22 @@ def draw_koch_snowflake(center: Point, size: float, depth: int):
 
 
 def main():
+    while True:
+        try:
+            depth_str = input("Enter recursion depth (recommended 0–6): ")
+            depth = int(depth_str)
+            if depth < 0:
+                print("Depth must be non-negative.")
+                continue
+            break
+        except ValueError:
+            print("Please enter an integer number.")
+
     turtle.speed(0)
     turtle.hideturtle()
     turtle.tracer(False)
 
-    draw_koch_snowflake(center=(0, 0), size=300, depth=4)
+    draw_koch_snowflake(center=(0, 0), size=300, depth=depth)
 
     turtle.tracer(True)
     turtle.done()
